@@ -1,0 +1,81 @@
+package com.jordanalphonso.timePuncher.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+
+
+/**
+ * @author jordan alphonso
+ *
+ */
+@Entity
+@Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@XmlRootElement
+public class User implements Serializable {
+	
+	@JsonView(JsonViews.Public.class)
+	private long user_id;
+	@JsonView(JsonViews.Public.class)
+	@NotEmpty
+	@Size(min = 3, max = 150)
+	private String username;
+	@NotEmpty
+	@Size(min = 6, max = 60)
+	private String password;
+	@JsonView(JsonViews.Public.class)
+	private boolean enabled = true;
+	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	public long getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
+	}
+	
+	@Column(name = "username", nullable = false)
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(name = "password", nullable = false)
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		BCryptPasswordEncoder encoder =  new BCryptPasswordEncoder(11);
+		String hashedPW = encoder.encode(password);
+		
+		this.password = hashedPW;
+	}
+	
+	@Column(name = "enabled", nullable = false)
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	
+	
+}
