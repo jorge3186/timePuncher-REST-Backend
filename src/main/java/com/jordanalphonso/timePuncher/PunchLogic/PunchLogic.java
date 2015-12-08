@@ -173,6 +173,8 @@ public class PunchLogic {
 			minutes = minutes + min;
 		}
 		
+		
+		//pretty format with only 2 decimal places
 		double hoursDouble = (Double.valueOf(minutes)/60.00);
 		BigDecimal hours = BigDecimal.valueOf(hoursDouble);
 		BigDecimal niceNumber = hours.setScale(2, RoundingMode.CEILING);

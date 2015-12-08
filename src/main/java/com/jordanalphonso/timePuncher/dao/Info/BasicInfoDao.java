@@ -38,12 +38,14 @@ public class BasicInfoDao implements GenericInfoDao<BasicInfo>{
 			manager.merge(basicInfo);
 		}
 		
+		manager.flush();
 	}
 
 	@Transactional
 	public BasicInfo findEntityById(long id) {
 		
 		BasicInfo basicInfo = manager.find(BasicInfo.class, id);
+		manager.flush();
 		
 		return basicInfo;
 	}

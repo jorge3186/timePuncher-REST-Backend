@@ -62,7 +62,7 @@ public class GeneralInfoRestController {
 	///////////BASIC INFO ////////////////////////////
 
 	/////// SAVE OR UPDATE BASIC INFO FOR USER WHO IS ALREADY CREATED
-	@RequestMapping(value = "/users/update/basicInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
+	@RequestMapping(value = "/users/basicInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateBasicInfo(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
 		BasicInfo basicInfo = basicInfoService.findEntity(id);
@@ -114,7 +114,7 @@ public class GeneralInfoRestController {
 	//////////////// WORK INFO ///////////////////////////
 	
 	/////// SAVE OR UPDATE WORK INFO FOR USER WHO IS ALREADY CREATED
-	@RequestMapping(value = "/user/update/workInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
+	@RequestMapping(value = "/user/workInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateWorkInfo(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
 		WorkInfo workInfo = workInfoService.findEntity(id);
@@ -166,7 +166,7 @@ public class GeneralInfoRestController {
 	////////////////  AUTHORITY   ///////////////////////////
 	
 	/////// SAVE OR UPDATE AUTHORITY FOR USER WHO IS ALREADY CREATED
-	@RequestMapping(value = "/users/update/authority/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
+	@RequestMapping(value = "/users/authority/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateAuthority(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
 		Authority auth = authorityService.findEntity(id);

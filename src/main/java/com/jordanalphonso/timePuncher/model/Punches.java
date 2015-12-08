@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Type;
 
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "punches")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@XmlRootElement
+@XmlRootElement
 public class Punches implements Serializable {
 	
 	private long punch_id;

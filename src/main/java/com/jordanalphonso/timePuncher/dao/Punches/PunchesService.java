@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,30 +70,25 @@ public class PunchesService extends ObjectMapper implements IPunchesService {
 	}
 
 	
-	
 	public Punches getLastPunch(long id) {
 		
 		return punchesDao.getLastPunch(id);
 	}
-	
 	
 	public List<Punches> getPunchesFromToday(long id) {
 		
 		return punchesDao.getAllPunchesToday(id);
 	}
 	
-	
 	public List<Punches> getPunchesFromRange(String beg, String end, long id) {
 		
 		return punchesDao.getPunchesFromRange(beg, end, id);
 	}
 	
-	
 	public List<Punches> getPunchesFromDay(String day, long id) {
 		
 		return punchesDao.getAllPunchesFromDay(day, id);
 	}
-	
 	
 	
 	public BigDecimal calcTotalHoursFromToday(long id) {

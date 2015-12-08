@@ -4,14 +4,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jordanalphonso.timePuncher.model.User;
 
-@Repository
+@Component("userDao")
 public class UserDao implements IUserDao{
 	
 	EntityManager manager;
@@ -27,9 +30,9 @@ public class UserDao implements IUserDao{
 	@Transactional
 	public List<User> listAllUsers() {
 		
-		Query query = manager.createQuery(
+		TypedQuery<User> query = manager.createQuery(
 				"select u from User u", User.class);
-				@SuppressWarnings("unchecked")
+
 				List<User> userList = query.getResultList();
 		
 		return userList;
@@ -39,6 +42,7 @@ public class UserDao implements IUserDao{
 	public void addUser(User user) {
 
 		manager.persist(user);
+		manager.flush();
 
 	}
 
@@ -46,6 +50,7 @@ public class UserDao implements IUserDao{
 	public void updateUser(User user) {
 
 		manager.merge(user);
+		manager.flush();
 		
 	}
 
@@ -53,7 +58,8 @@ public class UserDao implements IUserDao{
 	public void deleteUser(long id) {
 		
 		User user = manager.find(User.class, id);
-		manager.detach(user);
+		manager.remove(user);
+		manager.flush();
 		
 	}
 
@@ -61,7 +67,25 @@ public class UserDao implements IUserDao{
 	public User findUserById(long id) {
 		
 		User user = manager.find(User.class, id);
+		manager.flush();
+		
 		return user;
+	}
+	@Transactional
+	public User findByUsername(String username) {
+		
+		try{
+			TypedQuery<User> query = manager.createQuery(
+					"select u from User u where username= :username", User.class)
+					.setParameter("username", username);
+			
+			List<User> userList = query.getResultList();
+			return userList.get(0);
+		}
+		catch (Exception e){
+			return null;
+		}
+
 	}
 
 }

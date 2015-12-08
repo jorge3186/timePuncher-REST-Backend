@@ -77,12 +77,12 @@ public class HomeController {
 		urlList.put(10, "/api/hours/{day}/{id}");
 		urlList.put(11, "/api/report/{id}/{startDate}/{endDate}");
 		urlList.put(12, "/api/punch/{id}");
-		urlList.put(13, "/api/users/add");
-		urlList.put(14, "/api/users/update/{id}");
-		urlList.put(15, "/api/users/update/basicInfo/{id}");
-		urlList.put(16, "/api/users/update/workInfo/{id}");
-		urlList.put(17, "/api/users/update/authority/{id}");
-		urlList.put(18, "/api/users/delete/{id}");
+		urlList.put(13, "/api/users");
+		urlList.put(14, "/api/users/{id}");
+		urlList.put(15, "/api/users/basicInfo/{id}");
+		urlList.put(16, "/api/users/workInfo/{id}");
+		urlList.put(17, "/api/users/authority/{id}");
+		urlList.put(18, "/api/users/{id}");
 	
 		
 	}

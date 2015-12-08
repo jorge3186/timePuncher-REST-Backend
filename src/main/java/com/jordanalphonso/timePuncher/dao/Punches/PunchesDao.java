@@ -38,6 +38,7 @@ public class PunchesDao implements IPunchesDao {
 		punch.setUser_id(id);
 		
 		manager.persist(punch);
+		manager.flush();
 		
 	}
 
@@ -70,7 +71,7 @@ public class PunchesDao implements IPunchesDao {
 				query.setParameter("end", end + "%");
 				@SuppressWarnings("unchecked")
 				List<Punches> reportList = query.getResultList();
-		
+						
 		//fullList.addAll(startDay);
 		fullList.addAll(reportList);
 		fullList.addAll(endDay);
@@ -94,6 +95,7 @@ public class PunchesDao implements IPunchesDao {
 				query.setParameter("today", (formattedDate + "%"));
 				@SuppressWarnings("unchecked")
 				List<Punches> todayList = query.getResultList();
+				
 		
 		return todayList;
 	}
@@ -108,6 +110,8 @@ public class PunchesDao implements IPunchesDao {
 				query.setParameter("day", day + "%");
 				@SuppressWarnings("unchecked")
 				List<Punches> punchesFromDay = query.getResultList();
+				
+				manager.flush();
 		
 		return punchesFromDay;
 	}
@@ -125,7 +129,7 @@ public class PunchesDao implements IPunchesDao {
 		else{
 			return punches;
 		}
-
+		
 		
 		
 	}

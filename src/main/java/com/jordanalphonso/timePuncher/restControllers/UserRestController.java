@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,22 +39,27 @@ public class UserRestController {
 	
 	
 	//add user
-	@RequestMapping(value = "/users/add", method = RequestMethod.POST)
-	public Response addUser(@Valid @RequestBody User user, BindingResult bindingResult, String error){
-		
-		if (bindingResult.hasErrors()) {
-				return new Response(0, "Incorrect information provided.");
+	@CrossOrigin
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	public Response addUser(@RequestBody User user){
+	
+		try{
+			userService.addUser(user);
+			return new Response(1, "User created Successfully.");
 		}
-		else {
-		
-			try{
-				userService.addUser(user);
-				return new Response(1, "User created Successfully.");
-			}
-			catch(Exception e){
-				return new Response(0, e.toString());
-			}
+		catch(Exception e){
+			return new Response(0, e.toString());
 		}
+	}
+	
+	//list all users
+	@CrossOrigin
+	@JsonView(JsonViews.Public.class)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public List<User> listAllUsers(){
+		
+		List<User> userList =  userService.listAllUsers();
+		return userList;
 	}
 	
 	//get user
@@ -71,17 +77,9 @@ public class UserRestController {
 			}
 	}
 	
-	//list all users
-	@JsonView(JsonViews.Public.class)
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public List<User> listAllUsers(){
-		
-		List<User> userList =  userService.listAllUsers();
-		return userList;
-	}
-	
 	//delete user
-	@RequestMapping(value = "/users/delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+	@CrossOrigin
 	public Response deleteUser(@PathVariable("id")long id){
 		
 		try{
@@ -95,7 +93,7 @@ public class UserRestController {
 	}
 	
 	//update user
-	@RequestMapping(value = "/user/update/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
 	public Response updateUser(@PathVariable("id")long id, HttpServletRequest request){
 		
 		User user = userService.findUserById(id);

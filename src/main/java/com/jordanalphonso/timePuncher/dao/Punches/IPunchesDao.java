@@ -6,16 +6,16 @@ import com.jordanalphonso.timePuncher.model.Punches;
 
 public interface IPunchesDao {
 	
-	public void submitPunch(long id, Punches punch);
+	void submitPunch(long id, Punches punch);
 	
-	public Punches getLastPunch(long id);
+	Punches getLastPunch(long id);
 	
-	public List<Punches> checkIfPunchTableisEmpty(long id);
+	List<Punches> checkIfPunchTableisEmpty(long id);
 	
-	public List<Punches> getAllPunchesToday(long id);
+	List<Punches> getAllPunchesToday(long id);
 	
-	public List<Punches> getAllPunchesFromDay(String day, long id);
+	List<Punches> getAllPunchesFromDay(String day, long id);
 	
-	public List<Punches> getPunchesFromRange(String beg, String end, long id);
+	List<Punches> getPunchesFromRange(String beg, String end, long id);
 	
 }

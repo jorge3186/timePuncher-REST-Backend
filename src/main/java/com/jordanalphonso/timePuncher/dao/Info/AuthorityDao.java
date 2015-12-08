@@ -35,12 +35,15 @@ public class AuthorityDao implements GenericInfoDao<Authority> {
 			manager.merge(auth);
 		}
 		
+		manager.flush();
 	}
 
 	@Transactional
 	public Authority findEntityById(long id) {
 		
 		Authority auth = manager.find(Authority.class, id);
+		manager.flush();
+		
 		return auth;
 		
 	}

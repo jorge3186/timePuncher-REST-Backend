@@ -8,12 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 
@@ -23,18 +22,14 @@ import com.fasterxml.jackson.annotation.JsonView;
  */
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@XmlRootElement
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@XmlRootElement
 public class User implements Serializable {
 	
 	@JsonView(JsonViews.Public.class)
 	private long user_id;
 	@JsonView(JsonViews.Public.class)
-	@NotEmpty
-	@Size(min = 3, max = 150)
 	private String username;
-	@NotEmpty
-	@Size(min = 6, max = 60)
 	private String password;
 	@JsonView(JsonViews.Public.class)
 	private boolean enabled = true;
@@ -49,7 +44,7 @@ public class User implements Serializable {
 		this.user_id = user_id;
 	}
 	
-	@Column(name = "username", nullable = false)
+	@Column(name = "username")
 	public String getUsername() {
 		return username;
 	}
@@ -57,15 +52,12 @@ public class User implements Serializable {
 		this.username = username;
 	}
 	
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
-		BCryptPasswordEncoder encoder =  new BCryptPasswordEncoder(11);
-		String hashedPW = encoder.encode(password);
-		
-		this.password = hashedPW;
+		this.password = password;
 	}
 	
 	@Column(name = "enabled", nullable = false)

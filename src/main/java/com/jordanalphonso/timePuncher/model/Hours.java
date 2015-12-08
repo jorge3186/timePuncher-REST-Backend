@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@XmlRootElement
+@XmlRootElement
 public class Hours implements Serializable {
 	
 	@JsonView(JsonViews.Public.class)

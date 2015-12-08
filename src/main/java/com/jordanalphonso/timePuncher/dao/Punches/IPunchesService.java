@@ -9,17 +9,17 @@ import com.jordanalphonso.timePuncher.model.Punches;
 
 public interface IPunchesService {
 	
-	public void submitPunch(long id, HttpServletRequest notes);
+	void submitPunch(long id, HttpServletRequest notes);
 
-	public Punches getLastPunch(long id);
+	Punches getLastPunch(long id);
 	
-	public List<Punches> getPunchesFromToday(long id);
+	List<Punches> getPunchesFromToday(long id);
 	
-	public BigDecimal calcTotalHoursFromToday(long id);
+	BigDecimal calcTotalHoursFromToday(long id);
 	
-	public List<Punches> getPunchesFromDay(String day, long id);
+	List<Punches> getPunchesFromDay(String day, long id);
 	
-	public BigDecimal calcTotalHoursFromSpecifiedDay(long id, String day);
+	BigDecimal calcTotalHoursFromSpecifiedDay(long id, String day);
 	
-	public List<Punches> getPunchesFromRange(String beg, String end, long id);
+	List<Punches> getPunchesFromRange(String beg, String end, long id);
 }

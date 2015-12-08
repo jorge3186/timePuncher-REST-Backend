@@ -1,9 +1,12 @@
 package com.jordanalphonso.timePuncher.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface IGeneralInfoService<T> {
 	
-	public void addOrUpdateEntity(long id, T entity);
+	void addOrUpdateEntity(long id, T entity);
 		
-	public T findEntity(final long id);
+	T findEntity(final long id);
 
 }

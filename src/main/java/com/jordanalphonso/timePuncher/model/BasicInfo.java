@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "basic_info")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@XmlRootElement
+@XmlRootElement
 public class BasicInfo implements Serializable {
 
 	@JsonView(JsonViews.Public.class)

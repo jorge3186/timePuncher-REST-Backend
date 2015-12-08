@@ -10,15 +10,16 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
 	
 	<mvc:annotation-driven>
+	
 		<!-- JSON Converter -->
 		<mvc:message-converters>
 			<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 				<beans:property name="supportedMediaTypes">
 					<beans:list>
 						<beans:value>application/json</beans:value>
+						<beans:value>application/xml</beans:value>
 					</beans:list>
 				</beans:property>
 				<beans:property name="objectMapper" ref="jacksonObjectMapper"></beans:property>
@@ -48,6 +49,8 @@
 		</beans:property>
 	</beans:bean>
 	
+	<context:property-placeholder location="resources/application.properties"/>
+	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
 		<beans:property name="url" value="${jdbc.url}"/>
@@ -62,11 +65,11 @@
 			<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 		</beans:property>
 		
-		<beans:property name="jpaProperties">
+		<beans:property name="jpaPropertyMap">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</beans:prop>
 				<beans:prop key="showSql">true</beans:prop>
-				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">none</beans:prop>
 			</beans:props>
 		</beans:property>
 	</beans:bean>

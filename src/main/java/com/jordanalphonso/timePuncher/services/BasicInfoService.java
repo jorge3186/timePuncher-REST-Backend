@@ -1,12 +1,12 @@
 package com.jordanalphonso.timePuncher.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.jordanalphonso.timePuncher.dao.Info.GenericInfoDao;
 import com.jordanalphonso.timePuncher.model.BasicInfo;
 
-@Service("basicInfoService")
+@Component("basicInfoService")
 public class BasicInfoService implements IGeneralInfoService<BasicInfo> {
 	
 	GenericInfoDao<BasicInfo> basicInfoDao;

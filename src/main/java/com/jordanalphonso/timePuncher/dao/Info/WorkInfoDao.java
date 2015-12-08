@@ -36,6 +36,7 @@ public class WorkInfoDao implements GenericInfoDao<WorkInfo>{
 		else {
 			manager.merge(workInfo);
 		}
+		manager.flush();
 		
 	}
 
@@ -43,6 +44,7 @@ public class WorkInfoDao implements GenericInfoDao<WorkInfo>{
 	public WorkInfo findEntityById(long id) {
 		
 		WorkInfo workInfo = manager.find(WorkInfo.class, id);
+		manager.flush();
 		
 		return workInfo;
 	}

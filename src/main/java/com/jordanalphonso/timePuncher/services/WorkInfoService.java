@@ -1,11 +1,12 @@
 package com.jordanalphonso.timePuncher.services;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.jordanalphonso.timePuncher.dao.Info.GenericInfoDao;
 import com.jordanalphonso.timePuncher.model.WorkInfo;
 
-@Service("workInfoService")
+@Component("workInfoService")
 public class WorkInfoService implements IGeneralInfoService<WorkInfo> {
 
 	GenericInfoDao<WorkInfo> workInfoDao;
@@ -13,7 +14,8 @@ public class WorkInfoService implements IGeneralInfoService<WorkInfo> {
 	public GenericInfoDao<WorkInfo> getWorkInfoDao() {
 		return workInfoDao;
 	}
-
+	
+	@Autowired
 	public void setWorkInfoDao(GenericInfoDao<WorkInfo> workInfoDao) {
 		this.workInfoDao = workInfoDao;
 	}

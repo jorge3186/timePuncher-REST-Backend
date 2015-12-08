@@ -2,18 +2,25 @@ package com.jordanalphonso.timePuncher.dao.UserDao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.jordanalphonso.timePuncher.model.User;
 
+@Service
 public interface IUserService {
 	
-	public List<User> listAllUsers();
+	List<User> listAllUsers();
 	
-	public void addUser(User user);
+	void addUser(User user);
 	
-	public void updateUser(User user);
+	void updateUser(User user);
 	
-	public void deleteUser(final long id);
+	void deleteUser(final long id);
 	
-	public User findUserById(long id);
+	User findUserById(long id);
+	
+	User findByUsername(String username);
+	
+	String loginCheck(String username, String password);
 
 }

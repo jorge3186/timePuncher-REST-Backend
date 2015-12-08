@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "authorities")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//@XmlRootElement
+@XmlRootElement
 public class Authority implements Serializable {
 	
 	@JsonView(JsonViews.Public.class)
