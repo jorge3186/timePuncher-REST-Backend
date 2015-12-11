@@ -3,10 +3,9 @@ package com.jordanalphonso.timePuncher.restControllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,13 +55,15 @@ public class UserRestController {
 	@CrossOrigin
 	@JsonView(JsonViews.Public.class)
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public List<User> listAllUsers(){
+	public List<User> listAllUsers(HttpServletRequest request, HttpServletResponse response){
+		response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
 		
 		List<User> userList =  userService.listAllUsers();
 		return userList;
 	}
 	
-	//get user
+	//get user	
+	@CrossOrigin
 	@JsonView(JsonViews.Public.class)
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public User getUser(@PathVariable(value = "id") long id) {
@@ -78,8 +79,8 @@ public class UserRestController {
 	}
 	
 	//delete user
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 	@CrossOrigin
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 	public Response deleteUser(@PathVariable("id")long id){
 		
 		try{
@@ -93,6 +94,7 @@ public class UserRestController {
 	}
 	
 	//update user
+	@CrossOrigin
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
 	public Response updateUser(@PathVariable("id")long id, HttpServletRequest request){
 		

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,7 @@ public class PunchesRestController {
 
 
 	/////// PUNCH IN/OUT
+	@CrossOrigin
 	@RequestMapping(value = "/punch/{id}", method = RequestMethod.POST)
 	public Response submitPunch(@PathVariable long id, HttpServletRequest request) {
 		
@@ -51,6 +53,7 @@ public class PunchesRestController {
 	
 	////// GET USER'S MOST RECENT PUNCH
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/punch/last/{id}", method = RequestMethod.GET)
 	public Punches getLastPunch(@PathVariable long id){
 	
@@ -67,6 +70,7 @@ public class PunchesRestController {
 	
 	////// GET LIST OF PUNCHES FROM TODAY
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/punch/today/{id}", method = RequestMethod.GET)
 	public List<Punches> getAllPunchesFromToday(@PathVariable long id){
 		
@@ -80,6 +84,7 @@ public class PunchesRestController {
 	
 	//////GET LIST OF PUNCHES FROM User Specified Day
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/punch/{day}/{id}", method = RequestMethod.GET)
 	public List<Punches> getAllPunchesFromSpecifiedDay(@PathVariable("day") String day, @PathVariable("id") long id){
 		
@@ -94,6 +99,7 @@ public class PunchesRestController {
 	
 	////// GET REPORT LIST
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/report/{startDate}/{endDate}/{id}", method = RequestMethod.GET)
 	public List<Punches> getReport(@PathVariable("startDate") String beg, 
 									@PathVariable("endDate") String end, 
@@ -110,6 +116,7 @@ public class PunchesRestController {
 	
 	/////////////////////// GET DOUBLE(TOTAL HRS Today)
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/hours/today/{id}", method = RequestMethod.GET)
 	public Hours getTotalHrsToday(@PathVariable("id") long id){
 		Hours hours = new Hours();
@@ -125,6 +132,7 @@ public class PunchesRestController {
 	
 	/////////////////////// GET DOUBLE(TOTAL HRS Today)
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/hours/{day}/{id}", method = RequestMethod.GET)
 	public Hours getTotalHrsFromDay(@PathVariable("id") long id, @PathVariable("day") String day){
 		Hours hours = new Hours();

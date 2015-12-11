@@ -21,6 +21,6 @@ public interface IUserService {
 	
 	User findByUsername(String username);
 	
-	String loginCheck(String username, String password);
+	boolean loginCheck(String username, String password);
 
 }

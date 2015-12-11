@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jordanalphonso.timePuncher.dao.Punches.IPunchesDao;
-import com.jordanalphonso.timePuncher.dao.Punches.PunchesDao;
 import com.jordanalphonso.timePuncher.model.Punches;
 
 @Service("punchLogic")
@@ -123,7 +122,9 @@ public class PunchLogic {
 			
 			/// add last calculation of in punch until now
 			p1 = formatter.parseDateTime(timesIn.get(timesInSize-1));
+			System.out.println(p1);
 			p2 = formatter.parseDateTime(now);
+			System.out.println(p2);
 			Duration t = new Duration(p1, p2);
 			timeList.add(t);
 		
@@ -170,9 +171,9 @@ public class PunchLogic {
 		long minutes = 0;
 		for (Duration d : timeList){
 			long min = d.getStandardMinutes();
+			System.out.println(min);
 			minutes = minutes + min;
 		}
-		
 		
 		//pretty format with only 2 decimal places
 		double hoursDouble = (Double.valueOf(minutes)/60.00);

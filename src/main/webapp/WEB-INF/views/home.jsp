@@ -33,7 +33,7 @@
 		</tr>
 		<c:forEach items="${requestList}" var="request">
 			<tr>
-				<td><b>${request.value}</b></td>
+				<td><b>${request}</b></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -43,7 +43,7 @@
 		</tr>
 		<c:forEach items="${descList}" var="desc">
 			<tr>
-				<td>${desc.value}</td>
+				<td>${desc}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -53,7 +53,7 @@
 		</tr>
 		<c:forEach items="${urlList}" var="url">
 			<tr>
-				<td>${url.value}</td>
+				<td>${url}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -63,8 +63,8 @@
 		<h3>Examples:</h3>
 		<p><ins>GET User:</ins>              /api/user/1</p>
 		<p><ins>GET Time Report:</ins>       /api/report/2015-10-25/2015-11-25/1</p>
-		<p><ins>PUT Update User:</ins>       /api/updateUser/1</p>
-		<p><ins>DELETE User:</ins>			  /api/deleteUser/1</p>
+		<p><ins>PUT Update User:</ins>       /api/users/1</p>
+		<p><ins>DELETE User:</ins>			  /api/users/1</p>
 	</div>
 
 </body>

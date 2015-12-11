@@ -9,8 +9,8 @@ public class PasswordTest {
 	public void getPW(){
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
-		BCryptPasswordEncoder encoder2 = new BCryptPasswordEncoder();
-		String pw = "password";
+		//BCryptPasswordEncoder encoder2 = new BCryptPasswordEncoder();
+		String pw = "admin";
 		String hashedPW = encoder.encode(pw);
 		System.out.println(hashedPW);
 

@@ -5,15 +5,14 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.jordanalphonso.timePuncher.model.Authority;
 import com.jordanalphonso.timePuncher.model.BasicInfo;
 import com.jordanalphonso.timePuncher.model.JsonViews;
@@ -62,6 +61,7 @@ public class GeneralInfoRestController {
 	///////////BASIC INFO ////////////////////////////
 
 	/////// SAVE OR UPDATE BASIC INFO FOR USER WHO IS ALREADY CREATED
+	@CrossOrigin
 	@RequestMapping(value = "/users/basicInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateBasicInfo(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
@@ -92,6 +92,7 @@ public class GeneralInfoRestController {
 	
 	///// RETURN USER's BASIC INFO
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/users/basicInfo/{id}", method = RequestMethod.GET)
 	public BasicInfo getBasicInfo(@PathVariable("id") long id){
 		
@@ -114,6 +115,7 @@ public class GeneralInfoRestController {
 	//////////////// WORK INFO ///////////////////////////
 	
 	/////// SAVE OR UPDATE WORK INFO FOR USER WHO IS ALREADY CREATED
+	@CrossOrigin
 	@RequestMapping(value = "/user/workInfo/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateWorkInfo(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
@@ -144,6 +146,7 @@ public class GeneralInfoRestController {
 	
 	///// RETURN USER's WORK INFO
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/users/workInfo/{id}", method = RequestMethod.GET)
 	public WorkInfo getWorkInfo(@PathVariable("id") long id){
 		
@@ -166,6 +169,7 @@ public class GeneralInfoRestController {
 	////////////////  AUTHORITY   ///////////////////////////
 	
 	/////// SAVE OR UPDATE AUTHORITY FOR USER WHO IS ALREADY CREATED
+	@CrossOrigin
 	@RequestMapping(value = "/users/authority/{id}", method = {RequestMethod.POST, RequestMethod.PUT})
 	public Response addOrUpdateAuthority(@PathVariable("id")long id, HttpServletRequest request) throws IOException{
 		
@@ -196,6 +200,7 @@ public class GeneralInfoRestController {
 	
 	///// RETURN USER's AUTHORITY
 	@JsonView(JsonViews.Public.class)
+	@CrossOrigin
 	@RequestMapping(value = "/users/authority/{id}", method = RequestMethod.GET)
 	public Authority getAuthority(@PathVariable("id") long id){
 		

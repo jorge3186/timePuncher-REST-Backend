@@ -24,8 +24,9 @@ public class TokenAuthService {
 		final User user = (User) authentication.getDetails();
 		//add token created for user
 		response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
-		//add header to expose token for reading in console
-		//response.addHeader("Access-Control-Expose-Headers", AUTH_HEADER_NAME);
+		//add header to expose token for reading
+		response.addHeader("Access-Control-Expose-Headers", AUTH_HEADER_NAME);
+
 	}
 	
 	

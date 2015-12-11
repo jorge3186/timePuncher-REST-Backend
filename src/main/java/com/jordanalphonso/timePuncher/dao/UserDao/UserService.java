@@ -91,16 +91,16 @@ public class UserService extends ObjectMapper implements IUserService {
 			return user;
 	}
 
-	public String loginCheck(String username, String password) {
+	public boolean loginCheck(String username, String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
 		User user = userDao.findByUsername(username);
 		
-		if (encoder.matches(password, user.getPassword())) {
-				return "Successful login";
+		if (user != null && encoder.matches(password, user.getPassword())) {
+				return true;
 			
 		}
 		else {
-			return "Incorrect Credentials"; 
+			return false; 
 		}
 		
 		

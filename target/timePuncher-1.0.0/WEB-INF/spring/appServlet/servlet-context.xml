@@ -42,14 +42,10 @@
 	<!-- Scan base packages -->
 	<context:component-scan base-package="com.jordanalphonso.timePuncher" />
 	
-	<!-- database properties file -->
-	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<beans:property name="location">
-			<beans:value>resources/database.properties</beans:value>
-		</beans:property>
+	<!-- application properties file -->
+	<beans:bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<beans:property name="location" value="/resources/application.properties"/>
 	</beans:bean>
-	
-	<context:property-placeholder location="resources/application.properties"/>
 	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="${jdbc.driverClassName}"/>

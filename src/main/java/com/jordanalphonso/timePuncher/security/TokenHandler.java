@@ -43,7 +43,7 @@ public class TokenHandler {
 		
 		return Jwts.builder()
 				.setHeaderParams(header)
-				.setClaims(claims)
+				.setSubject(user.getUsername())
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}

@@ -34,10 +34,10 @@ public class LoginRestController {
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Response login(@RequestBody User user, HttpServletResponse response) throws IOException{
-		String loginCheck = userService.loginCheck(user.getUsername(), user.getPassword());
+		boolean loginCheck = userService.loginCheck(user.getUsername(), user.getPassword());
 		
 		try{
-			if (loginCheck.equals("Successful login")){
+			if (loginCheck == true){
 				org.springframework.security.core.userdetails.User authUser = userAuthService.loadUserByUsername(user.getUsername());
 				UserAuthentication authentication = new UserAuthentication(authUser);
 				tokenAuthService.addAuthentication(response, authentication);
