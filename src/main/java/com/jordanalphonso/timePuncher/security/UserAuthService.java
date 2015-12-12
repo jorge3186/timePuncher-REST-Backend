@@ -24,14 +24,14 @@ public class UserAuthService<GrantedAuthrotiy> implements UserDetailsService {
 	@Autowired
 	AuthorityService authorityService;
 
-	public User loadUserByUsername(String username){
+	public CustomSecurityUser loadUserByUsername(String username){
 		com.jordanalphonso.timePuncher.model.User user = userService.findByUsername(username);
 		
 		if (user == null){
 			throw new UsernameNotFoundException("User not found.");
 		}
-			return new User(
-					user.getUsername(), user.getPassword(), user.isEnabled(),
+			return new CustomSecurityUser(
+					user.getUsername(), user.getPassword(), user.getUser_id(), user.isEnabled(),
 					true, true, true,
 					getGrantedAuthorities(user));
 		

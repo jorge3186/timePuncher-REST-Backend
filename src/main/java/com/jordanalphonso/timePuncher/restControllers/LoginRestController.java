@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jordanalphonso.timePuncher.dao.UserDao.IUserService;
 import com.jordanalphonso.timePuncher.model.Response;
 import com.jordanalphonso.timePuncher.model.User;
+import com.jordanalphonso.timePuncher.security.CustomSecurityUser;
 import com.jordanalphonso.timePuncher.security.TokenAuthService;
 import com.jordanalphonso.timePuncher.security.UserAuthService;
 import com.jordanalphonso.timePuncher.security.UserAuthentication;
@@ -38,7 +39,7 @@ public class LoginRestController {
 		
 		try{
 			if (loginCheck == true){
-				org.springframework.security.core.userdetails.User authUser = userAuthService.loadUserByUsername(user.getUsername());
+				CustomSecurityUser authUser = userAuthService.loadUserByUsername(user.getUsername());
 				UserAuthentication authentication = new UserAuthentication(authUser);
 				tokenAuthService.addAuthentication(response, authentication);
 	

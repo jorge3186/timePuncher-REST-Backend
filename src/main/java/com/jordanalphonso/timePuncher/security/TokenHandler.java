@@ -24,7 +24,7 @@ public class TokenHandler {
 		this.userAuthService = userAuthService;
 	}
 	
-	public User parseUserFromToken(String token){
+	public CustomSecurityUser parseUserFromToken(String token){
 		String username = Jwts.parser()
 				.setSigningKey(secret)
 				.parseClaimsJws(token)
@@ -33,17 +33,18 @@ public class TokenHandler {
 		return userAuthService.loadUserByUsername(username);
 	}
 	
-	public String createTokenForUser(User user){
-		
-		claims.put("name", user.getUsername());
-		claims.put("active", user.isEnabled());
+	public String createTokenForUser(CustomSecurityUser user){
 		
 		header.put("alg", SignatureAlgorithm.HS256);
 		header.put("typ", "JWT");
 		
+		claims.put("id", user.getUser_id());
+		claims.put("sub", user.getUsername());
+		claims.put("auth", user.getAuthorities());
+		
 		return Jwts.builder()
 				.setHeaderParams(header)
-				.setSubject(user.getUsername())
+				.setClaims(claims)
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}

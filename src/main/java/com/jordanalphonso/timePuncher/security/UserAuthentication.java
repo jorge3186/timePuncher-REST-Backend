@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 
 public class UserAuthentication implements Authentication {
 	
-	private final User user;
+	private final CustomSecurityUser user;
 	private boolean authenticated = true;
 	
-	public UserAuthentication(User user){
+	public UserAuthentication(CustomSecurityUser user){
 		this.user = user;
 	}
 
@@ -51,6 +51,10 @@ public class UserAuthentication implements Authentication {
 	public void setAuthenticated(boolean authenticated) throws IllegalArgumentException {
 		this.authenticated = authenticated;
 
+	}
+	
+	public Object getUserId(){
+		return user.getUser_id();
 	}
 
 }

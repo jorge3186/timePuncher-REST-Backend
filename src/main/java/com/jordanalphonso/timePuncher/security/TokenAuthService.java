@@ -21,7 +21,7 @@ public class TokenAuthService {
 	}
 	
 	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication){
-		final User user = (User) authentication.getDetails();
+		final CustomSecurityUser user = (CustomSecurityUser) authentication.getDetails();
 		//add token created for user
 		response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
 		//add header to expose token for reading
@@ -33,7 +33,7 @@ public class TokenAuthService {
 	public Authentication getAuthentication(HttpServletRequest request){
 		final String token = request.getHeader(AUTH_HEADER_NAME);
 		if (token != null){
-			final User user = tokenHandler.parseUserFromToken(token);
+			final CustomSecurityUser user = tokenHandler.parseUserFromToken(token);
 			if (user != null){
 				return new UserAuthentication(user);
 			}
