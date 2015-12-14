@@ -21,7 +21,7 @@ import com.jordanalphonso.timePuncher.model.Response;
 import com.jordanalphonso.timePuncher.model.User;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api")
 public class UserRestController {
 	
 	UserService userService;
@@ -55,8 +55,7 @@ public class UserRestController {
 	@CrossOrigin
 	@JsonView(JsonViews.Public.class)
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public List<User> listAllUsers(HttpServletRequest request, HttpServletResponse response){
-		response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+	public List<User> listAllUsers(){
 		
 		List<User> userList =  userService.listAllUsers();
 		return userList;

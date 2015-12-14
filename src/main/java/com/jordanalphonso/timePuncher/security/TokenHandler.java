@@ -1,12 +1,11 @@
 package com.jordanalphonso.timePuncher.security;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,12 +34,16 @@ public class TokenHandler {
 	
 	public String createTokenForUser(CustomSecurityUser user){
 		
+		Collection<GrantedAuthority> authorities = user.getAuthorities();
+		for (GrantedAuthority auth : authorities){
+			claims.put("auth", auth.getAuthority());
+		}
+		
 		header.put("alg", SignatureAlgorithm.HS256);
 		header.put("typ", "JWT");
 		
 		claims.put("id", user.getUser_id());
 		claims.put("sub", user.getUsername());
-		claims.put("auth", user.getAuthorities());
 		
 		return Jwts.builder()
 				.setHeaderParams(header)
